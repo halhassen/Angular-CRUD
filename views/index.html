@@ -8,11 +8,71 @@
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
 </head>
 <body>
-	
+	<div ng-controller="FormCRUD as vm">
+		<h1 class="text-center page-header">Your Playlist Has: {{registration.length}} </h1>
+		<form ng-submit="vm.register()" name="registration" class="col-sm-6 col-sm-offset-3">
+			<h1 class="text-center page-header">Your Playlist Has: {{registration.length}} </h1>
+			<div class="form-group">
+				<input type="text" name="first" ng-model="vm.user.first" ng-required="true" class="form-control" ng-class="{'input-success': registration.first.$valid}"/>
+				<p>{{registration.first.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="text" name="last" ng-model="vm.user.last" ng-required="true" class="form-control" ng-class="{'input-success': registration.last.$valid}"/>
+				<p>{{registration.last.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="email" name="email" ng-model="vm.user.email" ng-required="true" class="form-control" ng-class="{'input-success': registration.email.$valid, 'input-fail': registration.email.$error.email && registration.email.$dirty}"/>
+				<p>{{registration.email.$error}}</p>
+				<div ng-show="!registration.email.$valid && registration.email.$dirty">
+					Please input a valid email address.
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="username" ng-model="vm.user.username" ng-required="true" ng-minlength="6" class="form-control" ng-class="{'input-success': registration.username.$valid}"/>
+				<p>{{registration.username.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" ng-model="vm.user.password" ng-required="true" ng-minlength="6" class="form-control" ng-class="{'input-success': registration.password.$valid}"/>
+				<p>{{registration.password.$error}}</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password_confirm" ng-model="vm.user.password_confirm" ng-required="true" class="form-control" ng-class="{'input-success': registration.password_confirm.$valid}"/>
+			</div>
+			<div class="form-group">
+				<input type="submit" ng-disabled="!registration.$valid" class="btn btn-success btn-block"/>
+			</div>
+		</form>
+	</div>
+<!--<div ng-controller="OtherController as vm">
+		<h1 ng-if="vm.checked">Cars</h1>
+		<input type="checkbox" ng-model="vm.checked" ng-int="checked=true"/>
+		<div ng-hide="vm.editing">
+			<h3>Create Car</h3>
+			<input class="form-control" ng-class="{'input-success': vm.newCar}" ng-model="vm.newCar"/>
+			<button type="button" ng-disabled="!vm.newCar" ng-click="vm.create()" class="btn btn-success">Create</button> 
+			<h2>{{vm.newCar}}</h2>
+			<hr>
+		</div>
+		<div ng-show="vm.editing">
+			<h3>Edit Car</h3>
+			<input type="text" class="form-control" ng-model="vm.editCar.name"/>
+			<button type="button" class="btn btn-primary" ng-click="vm.submitEdit()">Submit</button>
+
+		</div>
+		<div class="well row col-md-4 container" ng-repeat="car in vm.cars track by $index">
+			<h4>{{car}}</h4>
+			<button type="button" class="btn btn-danger" ng-click="vm.cars.splice($index, 1)">Delete</button>
+			<button type="button" class="btn btn-warning" ng-click="vm.startEdit($index)">Edit</button>
+			<p ng-if="vm.newCar">CARS!</p>
+
+		</div>
+		<p class="row col-md-12" ng-if="vm.exp()">I'm not from Earth, from far away,
+			I bust through chests like baby greys</p>
+
+		</div>-->
 
 
-	
-	<script src="/angular/angular.min.js"></script>
-	<script src="/javascript/app.js"></script>
-</body>
-</html>
+		<script src="/angular/angular.min.js"></script>
+		<script src="/javascript/app.js"></script>
+	</body>
+	</html>

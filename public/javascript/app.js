@@ -1,9 +1,13 @@
-angular.module('app', []) //brings in non-angular dependencies
-/*.controller('OldController', ['$scope', function($scope) { //brings in dependencies that are brought in from angular
-	$scope.popup = function() {
-		$scope.thing = $scope.stuff;
-	};
-}])*/
+angular.module('app', []) 
+.controller("FormCCRUD", [function() {
+	var vm = this;
+	vm.user = {};
+	vm.register = function() {
+		console.log(vm.user);
+	}
+}])
+
+//CRUD 
 .controller('OtherController', [function() {
 	var vm = this;
 	vm.newCar = "";
